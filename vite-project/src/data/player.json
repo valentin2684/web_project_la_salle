@@ -1,0 +1,13 @@
+{
+ "text": "wowww",
+ "playerName": "SaulGoodsMan",
+ "experience": 100,
+ "level": 3,
+ "coin": 0,
+ "weapon": {
+    "weapon1": 20,
+    "weapon2": 30,
+    "weapon3": 35
+ },
+ "actualWeapon": "weapon1"
+}
