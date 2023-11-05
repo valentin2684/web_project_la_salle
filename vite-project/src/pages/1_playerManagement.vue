@@ -73,3 +73,25 @@
 
   </div>
 </template>
+
+<script>
+import MenuComponent from '../components/menu.vue';
+import playerData from '../data/player.json';
+
+export default {
+  components: {
+    MenuComponent
+  },
+  data() {
+    return {
+      playerData: playerData
+    };
+  },
+  methods: {
+    test1(newWeaponToSet){
+      playerData.playerName = newWeaponToSet;
+      alert("New main weapon: " + playerData.playerName)
+    }
+  }
+};
+</script>
