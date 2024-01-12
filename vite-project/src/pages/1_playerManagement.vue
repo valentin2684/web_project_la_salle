@@ -1,75 +1,49 @@
+<!-- the user management page. -->
+
 <template>
   <div>
-    <!-- redirection to all the pages -->
     <MenuComponent />
 
     <h1 class="d-flex justify-content-center h1">we are at "account" page</h1>
 
+    <div class="row inside_grid_">
+      <h2 class="d-flex justify-content-center h2">Your Account</h2>
 
-    <div class="md:grid grid-cols-2 bg-sky-100"> <!-- 1. player management + backpacked -->
-      <div>
+      <section class="col-12 col-md-6">
+        <API_call_GetOnePlayer />
+      </section>
 
-        <div class="row"> <!-- 1.1 account management -->
-          <h2 class="flex justify-center h2">Account management</h2>
-          <div class="col-md-auto">
-            <button class="btn btn-primary">join</button>
-          </div>
-          <div class="col-md-auto">
-            <button class="btn btn-primary">delection</button>
-          </div>
+      <section class="col-12 col-md-6">
+        <API_call_GetPlayerStatistics />
+        <API_call_FinishGameOurself />
+      </section>
 
-
-        </div>
-
-        <div> <!-- 1.2 player info -->
-          <h2 class="flex justify-center h2">Player info</h2>
-          <p>name: {{ playerData.playerName }}</p>
-          <p>photo: </p>
-          <img src="../data/picture_user.png" class="rounded" alt="picture of the user profile" width="100" height="100">
-          <p>experience: {{ playerData.experience }}xp</p>
-          <p>level: {{playerData.level}}</p>
-          <p>coins: {{playerData.coin}}€</p>
-        </div>
-
-        <div> <!-- 1.3 backpacked management-->
-          <h2 class="flex justify-center h2">Backpacked info</h2>
-          <p>list of all available equipment:</p>
-          <div v-for="(price, weaponName) in playerData.weapon" :key="weaponName">
-            <p>{{ weaponName }}: {{ price }}€</p>
-          </div>
-          <p>equipped attacks for the following games:</p>
-          <p>{{playerData.actualWeapon}}</p>
-        </div>
-      </div>
-
-      <div class="bg-orange-200"> <!-- 2. management of attack -->
-        <h2 class="flex justify-center h2">Backpacked management</h2>
-        <p>ability to change equipped attacks for subsequent games:</p>
-        <div v-for="(price, weaponName) in playerData.weapon" :key="weaponName">
-          <button class="btn btn-primary" @click="test1(weaponName)">{{weaponName}}</button>
-        </div>
-      </div>
     </div>
 
-    <div class="bg-cyan-100"> <!-- game history -->
-      <h2 class="flex justify-center h2">Player game history</h2>
-      <p>number of game won: 50%</p>
-      <p>old finished game + information about them</p>
-      <br/><br/>
-      <div>
-        <p>game -1:</p>
-        <p>game won</p>
-        <p>number of move, 7</p>
-        <p>money earn, 3€</p>
-      </div>
-      <br/><br/>
-      <div>
-      <p>game -2:</p>
-      <p>game lost</p>
-      <p>number of move, 4</p>
-      <p>money earn, 0€</p>
-      </div>
+    <h2 class="d-flex justify-content-center h2">Account search</h2>
+
+    <div class="row">
+
+      <section class="col-12 col-md-6 overflow-scroll">
+        <API_call_GetAllPlayers />
+      </section>
+
+      <section class="col-12 col-md-6">
+        <API_call_StatisticOnePlayer />
+      </section>
+
+      <section class="col-12 col-md-6 overflow-scroll">
+        <API_call_FinishSpecificPlayer />
+      </section>
+        
     </div>
+
+    <h2 class="d-flex justify-content-center h2">Dangerous settings</h2>
+    
+    
+
+    <API_call_DeleteUser />
+    
 
   </div>
 </template>
@@ -77,10 +51,24 @@
 <script>
 import MenuComponent from '../components/menu.vue';
 import playerData from '../data/player.json';
+import API_call_GetAllPlayers from '../components/API_call_GetAllPlayers.vue';
+import API_call_GetOnePlayer from '../components/API_call_GetOnePlayer.vue';
+import API_call_GetPlayerStatistics from '../components/API_call_GetPlayerStatistics.vue';
+import API_call_DeleteUser from '../components/API_call_DeleteUser.vue';
+import API_call_StatisticOnePlayer from '../components/API_call_StatisticOnePlayer.vue';
+import API_call_FinishSpecificPlayer from '../components/API_call_FinishSpecificPlayer.vue';
+import API_call_FinishGameOurself from '../components/API_call_FinishGameOurself.vue';
 
 export default {
   components: {
-    MenuComponent
+    MenuComponent,
+    API_call_GetAllPlayers,
+    API_call_GetOnePlayer,
+    API_call_GetPlayerStatistics,
+    API_call_DeleteUser,
+    API_call_StatisticOnePlayer,
+    API_call_FinishSpecificPlayer,
+    API_call_FinishGameOurself,
   },
   data() {
     return {
